@@ -46,6 +46,13 @@ class CreateTeamUseCase {
       motto: motto,
     );
 
+    for (var player in team.players) {
+      player.team = team;
+    }
+    for (var player in team.bench) {
+      player.team = team;
+    }
+
     _teamRepository.saveTeam(team);
     print('✅ Team "$teamName" created successfully!');
     print('   👨‍🏫 Trainer: ${trainer.name}');

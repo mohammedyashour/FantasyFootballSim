@@ -57,7 +57,7 @@ class RandomTeamGeneratorUseCase {
         StrategyType.values[_random.nextInt(StrategyType.values.length)];
     final Formation formation = _pickRandomFormation();
 
-    return _createTeamUseCase.call(
+    final team = _createTeamUseCase.call(
       teamName: name,
       trainer: trainer,
       players: starters,
@@ -69,6 +69,15 @@ class RandomTeamGeneratorUseCase {
       motto: motto,
       teamColors: colors,
     );
+
+    for (var player in team.players) {
+      player.team = team;
+    }
+    for (var player in team.bench) {
+      player.team = team;
+    }
+
+    return team;
   }
 
   String _generateRandomTeamName() {
