@@ -1,6 +1,5 @@
 import '../../../domain/entities/player.dart';
 import '../../../domain/enums/nationality.dart';
-import '../../../domain/usecases/player/CreatePlayerUseCase.dart';
 import '../../../domain/usecases/player/get_all_players_usecase.dart';
 import '../../../domain/usecases/player/get_player_by_player_number_usecase.dart';
 import '../../../domain/usecases/player/get_player_by_name_usecase.dart';
@@ -19,7 +18,6 @@ class PlayerUI {
   final GetAllPlayersUseCase _getAllPlayers;
   final GetPlayerByPlayerNumberUseCase _getPlayerByPlayerNumber;
   final GetPlayerByNameUseCase _getPlayerByName;
-  final CreatePlayerUseCase _createPlayerUseCase;
   final GetPlayerByNationalityUseCase _getPlayerByNationalityUseCase;
   final RandomPlayerGeneratorUseCase _createRandomPlayer;
   final CreatePlayerUI _createPlayerUI;
@@ -32,7 +30,6 @@ class PlayerUI {
     required GetAllPlayersUseCase getAllPlayers,
     required GetPlayerByPlayerNumberUseCase getPlayerByPlayerNumber,
     required GetPlayerByNameUseCase getPlayerByName,
-    required CreatePlayerUseCase createPlayerUseCase,
     required RandomPlayerGeneratorUseCase createRandomPlayer,
     required GetPlayerByNationalityUseCase getPlayerByNationalityUseCase,
     required CreatePlayerUI createPlayerUI,
@@ -42,7 +39,6 @@ class PlayerUI {
   }) : _getAllPlayers = getAllPlayers,
        _getPlayerByPlayerNumber = getPlayerByPlayerNumber,
        _getPlayerByName = getPlayerByName,
-       _createPlayerUseCase = createPlayerUseCase,
        _createRandomPlayer = createRandomPlayer,
        _getPlayerByNationalityUseCase = getPlayerByNationalityUseCase,
        _createPlayerUI = createPlayerUI,

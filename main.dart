@@ -132,7 +132,6 @@ void main() {
   final playerUI = PlayerUI(
     getAllPlayers: getAllPlayers,
     getPlayerByPlayerNumber: getPlayerById,
-    createPlayerUseCase: createPlayerUseCase,
     createRandomPlayer: createRandomPlayer,
     outputWriter: output,
     inputReader: input,

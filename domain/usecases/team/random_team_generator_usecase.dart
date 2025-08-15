@@ -106,13 +106,18 @@ class RandomTeamGeneratorUseCase {
   }
 
   Formation _pickRandomFormation() {
-    final randomType =
-        FormationType.values[_random.nextInt(FormationType.values.length)];
+    if ( _getFormationsUseCase!= null) {
+      final all = _getFormationsUseCase.call();
+      if (all.isNotEmpty) {
+        return all[_random.nextInt(all.length)];
+      }
+    }
 
+    final randomType = FormationType.values[_random.nextInt(FormationType.values.length)];
     return Formation(
       type: randomType,
       name: randomType.displayName,
-      description: 'Balanced classic formation',
+      description: randomType.description,
       positions: [
         Position.GK.displayName,
         Position.LB.displayName,
@@ -129,5 +134,5 @@ class RandomTeamGeneratorUseCase {
       attackRating: 7,
       defenseRating: 7,
     );
-  }
-}
+  }}
+
