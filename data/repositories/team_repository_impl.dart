@@ -30,9 +30,9 @@ class TeamRepositoryImpl implements TeamRepository {
 
   @override
   List<Player> findPlayersInTeams(List<Player> players) {
-    final playerIds = players.map((p) => p.id).toList();
+    final playerIds = players.map((p) => p.playerNumber).toList();
     return _teams
-        .expand((team) => team.players.where((p) => playerIds.contains(p.id)))
+        .expand((team) => team.players.where((p) => playerIds.contains(p.playerNumber)))
         .toList();
   }
 

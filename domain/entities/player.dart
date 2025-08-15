@@ -5,7 +5,7 @@ import 'team.dart';
 enum PreferredFoot { right, left, both }
 
 class Player {
-  final String id;
+  final int playerNumber;
   final String name;
   final Position position;
   final int power;
@@ -22,7 +22,7 @@ class Player {
   bool isInjured;
 
   Player({
-    required this.id,
+    required this.playerNumber,
     required this.name,
     required this.position,
     required this.power,
@@ -54,6 +54,6 @@ class Player {
   @override
   String toString() {
     final teamName = team != null ? team!.name : "Free Agent";
-    return 'Player(id: $id, name: $name, position: $position, nationality: $nationality, age: $age, preferredFoot: ${preferredFoot.name}, power: $power, speed: $speed, stamina: $stamina, skill: $skill, overallRate: ${overallRate.toStringAsFixed(2)}, health: $health, injured: ${isInjured ? "Yes" : "No"}, team: $teamName)';
+    return 'Player(Player Number: $playerNumber, name: $name, position: $position, nationality: $nationality, age: $age, preferredFoot: ${preferredFoot.name}, power: $power, speed: $speed, stamina: $stamina, skill: $skill, overallRate: ${overallRate.toStringAsFixed(2)}, health: $health, injured: ${isInjured ? "Yes" : "No"}, team: $teamName)';
   }
 }

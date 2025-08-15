@@ -8,16 +8,15 @@ class PlayerPrinter {
   PlayerPrinter(this.output);
 
   void printPlayer(Player player) {
-    final line = '═' * 40;
-    output.writeLine(line.withStyle(TerminalColor.MAGENTA));
+
+    output.writeDivider();
     output.writeLine(
       StringCenter(
         '⚽️  Player Details  ⚽️',
       ).center(40).withStyle(TerminalColor.CYAN),
     );
-    output.writeLine(line.withStyle(TerminalColor.MAGENTA));
-
-    _printLine('🆔 ID', player.id);
+    output.writeDivider();
+    _printLine('🆔 Player Number', player.playerNumber.toString());
     _printLine('👤 Name', player.name);
     _printLine('📍 Position', player.position.name);
     _printLine('🌍 Nationality', player.nationality.name);
@@ -37,7 +36,7 @@ class PlayerPrinter {
 
     _printLine('⭐ Overall Rate', player.overallRate.toStringAsFixed(2));
 
-    output.writeLine(line.withStyle(TerminalColor.MAGENTA));
+    output.writeDivider();
   }
 
   void _printLine(String key, String value) {

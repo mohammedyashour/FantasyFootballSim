@@ -2,7 +2,7 @@ import '../../../domain/entities/player.dart';
 import '../../../domain/enums/nationality.dart';
 import '../../../domain/usecases/player/CreatePlayerUseCase.dart';
 import '../../../domain/usecases/player/get_all_players_usecase.dart';
-import '../../../domain/usecases/player/get_player_by_id_usecase.dart';
+import '../../../domain/usecases/player/get_player_by_player_number_usecase.dart';
 import '../../../domain/usecases/player/get_player_by_name_usecase.dart';
 import '../../../domain/usecases/player/get_player_by_nationality.dart';
 import '../../../domain/usecases/player/random_player_generator_usecase.dart';
@@ -17,7 +17,7 @@ import 'player_printer.dart';
 
 class PlayerUI {
   final GetAllPlayersUseCase _getAllPlayers;
-  final GetPlayerByIdUseCase _getPlayerById;
+  final GetPlayerByPlayerNumberUseCase _getPlayerByPlayerNumber;
   final GetPlayerByNameUseCase _getPlayerByName;
   final CreatePlayerUseCase _createPlayerUseCase;
   final GetPlayerByNationalityUseCase _getPlayerByNationalityUseCase;
@@ -30,7 +30,7 @@ class PlayerUI {
 
   PlayerUI({
     required GetAllPlayersUseCase getAllPlayers,
-    required GetPlayerByIdUseCase getPlayerById,
+    required GetPlayerByPlayerNumberUseCase getPlayerByPlayerNumber,
     required GetPlayerByNameUseCase getPlayerByName,
     required CreatePlayerUseCase createPlayerUseCase,
     required RandomPlayerGeneratorUseCase createRandomPlayer,
@@ -40,7 +40,7 @@ class PlayerUI {
     required ConsoleOutputWriter outputWriter,
     required ConsoleInputReader inputReader,
   })  : _getAllPlayers = getAllPlayers,
-        _getPlayerById = getPlayerById,
+        _getPlayerByPlayerNumber = getPlayerByPlayerNumber,
         _getPlayerByName = getPlayerByName,
         _createPlayerUseCase = createPlayerUseCase,
         _createRandomPlayer = createRandomPlayer,
@@ -126,8 +126,8 @@ class PlayerUI {
         action: _searchPlayerByName,
       ),
       UiAction(
-        name: '🆔 Search by ID',
-        action: _searchPlayerById,
+        name: '🆔 Search by PlayerNumber',
+        action: _searchPlayerByPlayerNumber,
       ),
       UiAction(
         name: '🌍 Search by Nationality',
@@ -172,9 +172,9 @@ class PlayerUI {
     }
   }
 
-  void _searchPlayerById() {
-    final id = _inputReader.readString('Enter player ID: ');
-    final player = _getPlayerById.call(id);
+  void _searchPlayerByPlayerNumber() {
+    final playerNumber = _inputReader.readInt('Enter player Player Number: ');
+    final player = _getPlayerByPlayerNumber.call(playerNumber);
 
     if (player != null) {
       _playerPrinter.printPlayer(player);
@@ -206,7 +206,6 @@ class PlayerUI {
       return Nationality.values[index - 1];
     }
 
-    // Try to match by name (case insensitive)
     return Nationality.values.firstWhere(
           (n) => n.displayName.toLowerCase() == input.trim().toLowerCase(),
       orElse: () => Nationality.other,

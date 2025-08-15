@@ -10,7 +10,7 @@ import 'domain/usecases/match/create_match_event.dart';
 import 'domain/usecases/match/describe_match_event.dart';
 import 'domain/usecases/player/CreatePlayerUseCase.dart';
 import 'domain/usecases/player/get_all_players_usecase.dart';
-import 'domain/usecases/player/get_player_by_id_usecase.dart';
+import 'domain/usecases/player/get_player_by_player_number_usecase.dart';
 import 'domain/usecases/player/get_player_by_name_usecase.dart';
 import 'domain/usecases/player/get_player_by_nationality.dart';
 import 'domain/usecases/player/random_player_generator_usecase.dart';
@@ -64,7 +64,7 @@ void main() {
   // Initialize use cases
   // Player use cases
   final getAllPlayers = GetAllPlayersUseCase(playerRepository);
-  final getPlayerById = GetPlayerByIdUseCase(playerRepository);
+  final getPlayerById = GetPlayerByPlayerNumberUseCase(playerRepository);
   final createPlayerUseCase = CreatePlayerUseCase(playerRepository);
   final createRandomPlayer = RandomPlayerGeneratorUseCase(playerRepository);
 
@@ -130,7 +130,7 @@ void main() {
 
   final playerUI = PlayerUI(
     getAllPlayers: getAllPlayers,
-    getPlayerById: getPlayerById,
+    getPlayerByPlayerNumber: getPlayerById,
     createPlayerUseCase: createPlayerUseCase,
     createRandomPlayer: createRandomPlayer,
     outputWriter: output,

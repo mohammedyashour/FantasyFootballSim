@@ -13,9 +13,9 @@ class PlayerRepositoryImpl implements PlayerRepository {
 
 
   @override
-  Player? getById(String id) {
+  Player? getByPlayerNumber(int number) {
     try {
-      return _players.firstWhere((p) => p.id == id);
+      return _players.firstWhere((p) => p.playerNumber == number);
     } catch (_) {
       return null;
     }

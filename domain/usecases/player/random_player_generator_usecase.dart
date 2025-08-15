@@ -19,7 +19,7 @@ class RandomPlayerGeneratorUseCase {
   }
 
   static Player _generatePlayer() {
-    final id = _generateId();
+    final playerNumber = _generateNumber();
     final name = _generateName();
     final position = Position.values[_random.nextInt(Position.values.length)];
     final nationality =
@@ -35,7 +35,7 @@ class RandomPlayerGeneratorUseCase {
     final skill = 50 + _random.nextInt(51);
 
     return Player(
-      id: id,
+      playerNumber: playerNumber,
       name: name,
       position: position,
       nationality: nationality,
@@ -50,8 +50,8 @@ class RandomPlayerGeneratorUseCase {
     );
   }
 
-  static String _generateId() {
-    return _random.nextInt(101).toString();
+  static int _generateNumber() {
+  return _random.nextInt(99) + 1;
   }
 
   static String _generateName() {

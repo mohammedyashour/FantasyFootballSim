@@ -39,6 +39,7 @@ class MatchUI {
   final RandomTeamGeneratorUseCase _randomTeamGeneratorUseCase;
   late final List<UiAction> _actions;
   List<UiAction> _matchActions = [];
+
   MatchUI({
     required CreateMatchEvent createEvent,
     required DescribeMatchEvent describeEvent,
@@ -166,9 +167,7 @@ class MatchUI {
       );
       _stadiumUI.showMenu();
       return _stadiumUI.getAllStadiums().isNotEmpty
-          ? _stadiumUI
-              .getAllStadiums()
-              .first
+          ? _stadiumUI.getAllStadiums().first
           : null;
     }
 

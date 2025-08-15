@@ -9,7 +9,7 @@ class CreatePlayerUseCase {
   CreatePlayerUseCase(this.repository);
 
   Player call({
-    required String id,
+    required int playerNumber,
     required String name,
     required Position position,
     required Nationality nationality,
@@ -25,7 +25,7 @@ class CreatePlayerUseCase {
     bool isInjured = false,
   }) {
     final player = Player(
-      id: id,
+      playerNumber: playerNumber,
       name: name,
       position: position,
       nationality: nationality,
