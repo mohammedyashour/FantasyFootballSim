@@ -12,7 +12,9 @@ class TeamPrinter {
     _output.writeLine('📜 Motto: "${team.motto}"');
     _output.writeLine('🦁 Mascot: ${team.mascot}');
     _output.writeLine('🎨 Colors: ${team.teamColors?.join(', ')}');
-    _output.writeLine('🧑‍🏫 Trainer: ${team.trainer.name} (${team.trainer.experience} yrs)');
+    _output.writeLine(
+      '🧑‍🏫 Trainer: ${team.trainer.name} (${team.trainer.experience} yrs)',
+    );
     _output.writeLine('🧩 Formation: ${team.formation.name}');
     _output.writeLine('⚽ Strategy: ${team.strategy.displayName}');
     _output.writeLine('👥 Squad Size: ${team.players.length} players');

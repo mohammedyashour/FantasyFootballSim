@@ -87,6 +87,7 @@ class CreateTeamUI {
       formation,
     );
   }
+
   String _getTeamName() {
     while (true) {
       final name = reader.readString("🔖 Team Name:");
@@ -277,29 +278,43 @@ class CreateTeamUI {
       if (players.length < 18) {
         final benchPlayersNeeded = 18 - players.length;
         for (int i = 0; i < benchPlayersNeeded; i++) {
-          final randomPlayer = RandomPlayerGeneratorUseCase(_playerRepository).call();
+          final randomPlayer =
+              RandomPlayerGeneratorUseCase(_playerRepository).call();
           players.add(randomPlayer);
-          writer.writeLine("🎲 Random substitute #${i + 1} added: ${randomPlayer.name}");
+          writer.writeLine(
+            "🎲 Random substitute #${i + 1} added: ${randomPlayer.name}",
+          );
         }
-        writer.writeSuccess("Added $benchPlayersNeeded substitutes to complete the squad (18 players)");
+        writer.writeSuccess(
+          "Added $benchPlayersNeeded substitutes to complete the squad (18 players)",
+        );
       }
       return;
     }
 
     for (int i = 0; i < startingPlayersNeeded; i++) {
-      final randomPlayer = RandomPlayerGeneratorUseCase(_playerRepository).call();
+      final randomPlayer =
+          RandomPlayerGeneratorUseCase(_playerRepository).call();
       players.add(randomPlayer);
-      writer.writeLine("🎲 Random starting player #${i + 1} added: ${randomPlayer.name}");
+      writer.writeLine(
+        "🎲 Random starting player #${i + 1} added: ${randomPlayer.name}",
+      );
     }
 
     for (int i = 0; i < substitutesNeeded; i++) {
-      final randomPlayer = RandomPlayerGeneratorUseCase(_playerRepository).call();
+      final randomPlayer =
+          RandomPlayerGeneratorUseCase(_playerRepository).call();
       players.add(randomPlayer);
-      writer.writeLine("🎲 Random substitute #${i + 1} added: ${randomPlayer.name}");
+      writer.writeLine(
+        "🎲 Random substitute #${i + 1} added: ${randomPlayer.name}",
+      );
     }
 
-    writer.writeSuccess("Team now has 11 starting players and 7 substitutes (18 total)");
+    writer.writeSuccess(
+      "Team now has 11 starting players and 7 substitutes (18 total)",
+    );
   }
+
   void _printAvailablePlayers() {
     writer.writeLine("\nAvailable Players:");
     _existingPlayers.asMap().forEach((index, player) {
@@ -336,6 +351,7 @@ class CreateTeamUI {
     );
     return StrategyType.values[idx - 1];
   }
+
   Formation _selectFormation() {
     writer.writeHeader("\n📐 Select Formation:");
 
@@ -374,6 +390,7 @@ class CreateTeamUI {
     writer.writeLine("${positions[6]}     ${positions[7]}");
     writer.writeLine("  ${positions[9]}   ${positions[10]}");
   }
+
   Formation _getDefaultFormation() {
     return Formation(
       type: FormationType.FOUR_FOUR_TWO,

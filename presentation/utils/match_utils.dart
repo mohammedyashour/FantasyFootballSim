@@ -14,7 +14,6 @@ import '../utils/terminal_utils.dart';
 import '../utils/ui_messages.dart';
 
 class MatchUtils {
-  /// Generates a complete random match setup
   Game generateRandomMatch({
     required RandomTeamGeneratorUseCase randomTeamGenerator,
     required RandomStadiumGeneratorUseCase randomStadiumGenerator,
@@ -41,7 +40,6 @@ class MatchUtils {
     );
   }
 
-  /// Displays match setup information
   void displayMatchSetup({required Game game, required OutputWriter output}) {
     output.writeLine(
       '\n${UIMessages.matchSetupTitle.withStyle(TerminalColor.BLUE)}',
@@ -82,7 +80,6 @@ class MatchUtils {
     );
   }
 
-  /// Selects a team with fallback to random generation
   Team? selectTeamWithFallback({
     required String teamType,
     required RandomTeamGeneratorUseCase randomTeamGenerator,
@@ -111,7 +108,6 @@ class MatchUtils {
     return randomTeamGenerator.call();
   }
 
-  /// Selects a stadium with fallback to random generation
   Stadium? selectStadiumWithFallback({
     required GetAllStadiumsUseCase getAllStadiums,
     required RandomStadiumGeneratorUseCase randomStadiumGenerator,
@@ -159,7 +155,6 @@ class MatchUtils {
     return stadiums[choice - 1];
   }
 
-  /// Selects a referee with fallback to random generation
   Referee? selectRefereeWithFallback({
     required GetAllRefereesUseCase getAllReferees,
     required RandomRefereeGeneratorUseCase randomRefereeGenerator,
@@ -207,7 +202,6 @@ class MatchUtils {
     return referees[choice - 1];
   }
 
-  /// Calculates match prediction based on team powers
   String predictMatchResult({required Team homeTeam, required Team awayTeam}) {
     final homePower = homeTeam.totalPower;
     final awayPower = awayTeam.totalPower;
@@ -227,5 +221,4 @@ class MatchUtils {
       return '🤝 Match is too close to call';
     }
   }
-
 }

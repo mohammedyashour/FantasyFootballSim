@@ -3,7 +3,8 @@ import '../../domain/repositories/trainer_repository.dart';
 
 class TrainerRepositoryImpl implements TrainerRepository {
   final List<Trainer> _trainers = [];
-  static final TrainerRepositoryImpl _instance = TrainerRepositoryImpl._internal();
+  static final TrainerRepositoryImpl _instance =
+      TrainerRepositoryImpl._internal();
 
   factory TrainerRepositoryImpl() => _instance;
 

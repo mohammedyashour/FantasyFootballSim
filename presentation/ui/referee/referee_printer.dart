@@ -14,16 +14,15 @@ class RefereePrinter {
   }
 
   static void printReferees(List<Referee> referees, OutputWriter writer) {
-      if (referees.isEmpty) {
-        writer.writeError('🚫 No referees found!');
-        return;
-      }
-      writer.writeLineWithColor('\n📋 All Referees', TerminalColor.CYAN);
-      writer.writeDivider(symbol: '-', count: 24);
-      for (var referee in referees) {
-        printReferee(referee, writer);
-      }
-      writer.writeDivider(symbol: '-', count: 24);
+    if (referees.isEmpty) {
+      writer.writeError('🚫 No referees found!');
+      return;
     }
+    writer.writeLineWithColor('\n📋 All Referees', TerminalColor.CYAN);
+    writer.writeDivider(symbol: '-', count: 24);
+    for (var referee in referees) {
+      printReferee(referee, writer);
+    }
+    writer.writeDivider(symbol: '-', count: 24);
   }
-
+}

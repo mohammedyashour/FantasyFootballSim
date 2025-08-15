@@ -24,33 +24,24 @@ class FormationUI {
     required OutputWriter output,
     required FormationDetailsPrinter detailsPrinter,
     required FormationComparator comparator,
-  })  : _getFormations = getFormationsUseCase,
-        _getRecommendedFormations = getRecommendedFormationsUseCase,
-        _input = input,
-        _output = output,
-        _detailsPrinter = detailsPrinter,
-        _comparator = comparator {
+  }) : _getFormations = getFormationsUseCase,
+       _getRecommendedFormations = getRecommendedFormationsUseCase,
+       _input = input,
+       _output = output,
+       _detailsPrinter = detailsPrinter,
+       _comparator = comparator {
     _initializeActions();
   }
 
   void _initializeActions() {
     _actions = [
-      UiAction(
-        name: '📋 View All Formations',
-        action: _handleAllFormations,
-      ),
+      UiAction(name: '📋 View All Formations', action: _handleAllFormations),
       UiAction(
         name: '⭐ View Recommended Formations',
         action: _handleRecommendedFormations,
       ),
-      UiAction(
-        name: '🔄 Compare Two Formations',
-        action: _handleComparison,
-      ),
-      UiAction(
-        name: '🚪 Back to Main Menu',
-        action: _exit,
-      ),
+      UiAction(name: '🔄 Compare Two Formations', action: _handleComparison),
+      UiAction(name: '🚪 Back to Main Menu', action: _exit),
     ];
   }
 

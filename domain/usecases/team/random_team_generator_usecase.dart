@@ -107,7 +107,7 @@ class RandomTeamGeneratorUseCase {
 
   Formation _pickRandomFormation() {
     final randomType =
-    FormationType.values[_random.nextInt(FormationType.values.length)];
+        FormationType.values[_random.nextInt(FormationType.values.length)];
 
     return Formation(
       type: randomType,
@@ -130,5 +130,4 @@ class RandomTeamGeneratorUseCase {
       defenseRating: 7,
     );
   }
-
 }

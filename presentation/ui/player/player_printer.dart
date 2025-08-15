@@ -8,7 +8,6 @@ class PlayerPrinter {
   PlayerPrinter(this.output);
 
   void printPlayer(Player player) {
-
     output.writeDivider();
     output.writeLine(
       StringCenter(

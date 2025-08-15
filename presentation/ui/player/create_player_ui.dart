@@ -26,7 +26,11 @@ class CreatePlayerUI {
     outputWriter.writeHeader('🎮 Add New Player');
     outputWriter.writeLine('Please enter the following details:');
 
-    int playerNumber = inputReader.readInt("🆔 Player Number:", min: 1,max: 100);
+    int playerNumber = inputReader.readInt(
+      "🆔 Player Number:",
+      min: 1,
+      max: 100,
+    );
     String name = inputReader.readString("👤 Name:");
 
     outputWriter.writeLine("📍 Choose Position (e.g., ST, CM, GK):");

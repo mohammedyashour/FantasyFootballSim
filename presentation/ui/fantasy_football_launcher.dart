@@ -34,7 +34,10 @@ class FantasyFootballLauncher {
       UiAction(name: "⚽ Simulate Match", action: onMatchUi),
       UiAction(name: "👥 Team Management", action: onTeamManagementUi),
       UiAction(name: "👟 Player Management", action: onPlayerManagementUi),
-      UiAction(name: "🗺️ Formation and Strategy Management",action: onFormationManagementUi,),
+      UiAction(
+        name: "🗺️ Formation and Strategy Management",
+        action: onFormationManagementUi,
+      ),
       UiAction(name: "👔 Trainer Management", action: onTrainerManagementUi),
       UiAction(name: "🏟️ Stadium Management", action: onStadiumUi),
       UiAction(name: "🧑‍⚖️ Manage Referees", action: onRefereeUi),

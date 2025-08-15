@@ -51,20 +51,20 @@ class TeamUi {
     required TrainerRepository trainerRepository,
     required ConsoleInputReader inputReader,
     required OutputWriter outputWriter,
-  })  : _createTeamUseCase = createTeamUseCase,
-        _createPlayerUseCase = createPlayerUseCase,
-        _createTrainerUseCase = createTrainerUseCase,
-        _randomTrainerGeneratorUseCase = randomTrainerGeneratorUseCase,
-        _randomTeamGeneratorUseCase = randomTeamGeneratorUseCase,
-        _getAllTeamsUseCase = getAllTeamsUseCase,
-        _searchTeamsUseCase = searchTeamsUseCase,
-        _getTeamsByCityUseCase = getTeamsByCityUseCase,
-        _getTeamsByStrategyUseCase = getTeamsByStrategyUseCase,
-        _playerRepository = playerRepository,
-        _trainerRepository = trainerRepository,
-        _inputReader = inputReader,
-        _outputWriter = outputWriter,
-        _teamPrinter = TeamPrinter(outputWriter) {
+  }) : _createTeamUseCase = createTeamUseCase,
+       _createPlayerUseCase = createPlayerUseCase,
+       _createTrainerUseCase = createTrainerUseCase,
+       _randomTrainerGeneratorUseCase = randomTrainerGeneratorUseCase,
+       _randomTeamGeneratorUseCase = randomTeamGeneratorUseCase,
+       _getAllTeamsUseCase = getAllTeamsUseCase,
+       _searchTeamsUseCase = searchTeamsUseCase,
+       _getTeamsByCityUseCase = getTeamsByCityUseCase,
+       _getTeamsByStrategyUseCase = getTeamsByStrategyUseCase,
+       _playerRepository = playerRepository,
+       _trainerRepository = trainerRepository,
+       _inputReader = inputReader,
+       _outputWriter = outputWriter,
+       _teamPrinter = TeamPrinter(outputWriter) {
     _initializeActions();
   }
 
@@ -133,7 +133,10 @@ class TeamUi {
         UiAction(name: '🔙 Back to Main Menu', action: () {}),
       ];
 
-      _menuPrinter.display(searchActions, (text) => _outputWriter.writeLine(text));
+      _menuPrinter.display(
+        searchActions,
+        (text) => _outputWriter.writeLine(text),
+      );
 
       final choice = _inputReader.readInt(
         'Enter your choice (1-${searchActions.length}):',
@@ -186,7 +189,11 @@ class TeamUi {
     _displaySearchResults(results, 'strategy', selectedStrategy.displayName);
   }
 
-  void _displaySearchResults(List<Team> results, String searchType, String query) {
+  void _displaySearchResults(
+    List<Team> results,
+    String searchType,
+    String query,
+  ) {
     if (results.isEmpty) {
       _outputWriter.writeError('No teams found with $searchType "$query"');
       _inputReader.waitForEnter();
@@ -197,16 +204,25 @@ class TeamUi {
   }
 
   void _displayTeamsList(List<Team> teams) {
-    final teamActions = teams.map((team) => UiAction(
-      name: '${team.name} (${team.city}) - ${team.strategy.displayName}',
-      action: () => _showTeamDetails(team),
-    )).toList();
+    final teamActions =
+        teams
+            .map(
+              (team) => UiAction(
+                name:
+                    '${team.name} (${team.city}) - ${team.strategy.displayName}',
+                action: () => _showTeamDetails(team),
+              ),
+            )
+            .toList();
 
     teamActions.add(UiAction(name: '🔙 Back', action: () {}));
 
     while (true) {
       _outputWriter.writeHeader('Select Team to View Details');
-      _menuPrinter.display(teamActions, (text) => _outputWriter.writeLine(text));
+      _menuPrinter.display(
+        teamActions,
+        (text) => _outputWriter.writeLine(text),
+      );
 
       final choice = _inputReader.readInt(
         'Enter choice (1-${teamActions.length}):',
@@ -225,14 +241,23 @@ class TeamUi {
   void _showTeamDetails(Team team) {
     final detailsActions = [
       UiAction(name: '📋 General Info', action: () => _showGeneralInfo(team)),
-      UiAction(name: '👥 Players & Formation', action: () => _showPlayersAndFormation(team)),
-      UiAction(name: '⚽ Strategy Analysis', action: () => _showStrategyAnalysis(team)),
+      UiAction(
+        name: '👥 Players & Formation',
+        action: () => _showPlayersAndFormation(team),
+      ),
+      UiAction(
+        name: '⚽ Strategy Analysis',
+        action: () => _showStrategyAnalysis(team),
+      ),
       UiAction(name: '🔙 Back', action: () {}),
     ];
 
     while (true) {
       _outputWriter.writeHeader('⚽ ${team.name.toUpperCase()}');
-      _menuPrinter.display(detailsActions, (text) => _outputWriter.writeLine(text));
+      _menuPrinter.display(
+        detailsActions,
+        (text) => _outputWriter.writeLine(text),
+      );
 
       final choice = _inputReader.readInt(
         'Select detail to view (1-${detailsActions.length}):',
@@ -255,7 +280,9 @@ class TeamUi {
     _outputWriter.writeLine('📜 Motto: "${team.motto}"');
     _outputWriter.writeLine('🦁 Mascot: ${team.mascot}');
     _outputWriter.writeLine('🎨 Colors: ${team.teamColors?.join(', ')}');
-    _outputWriter.writeLine('🧑‍🏫 Trainer: ${team.trainer.name} (${team.trainer.experience} yrs)');
+    _outputWriter.writeLine(
+      '🧑‍🏫 Trainer: ${team.trainer.name} (${team.trainer.experience} yrs)',
+    );
     _outputWriter.writeDivider();
   }
 
@@ -264,8 +291,8 @@ class TeamUi {
 
     team.players.take(11).forEach((player) {
       _outputWriter.writeLine(
-          '⭐ ${player.name.padRight(20)} ${player.position } '
-              'Rating: ${player.overallRate.toStringAsFixed(1)}'
+        '⭐ ${player.name.padRight(20)} ${player.position} '
+        'Rating: ${player.overallRate.toStringAsFixed(1)}',
       );
     });
 
@@ -273,8 +300,8 @@ class TeamUi {
       _outputWriter.writeLine('\n🔄 Substitutes (${team.players.length - 11})');
       team.players.skip(11).forEach((player) {
         _outputWriter.writeLine(
-            '🔹 ${player.name.padRight(20)} ${player.position } '
-                'Rating: ${player.overallRate.toStringAsFixed(1)}'
+          '🔹 ${player.name.padRight(20)} ${player.position} '
+          'Rating: ${player.overallRate.toStringAsFixed(1)}',
         );
       });
     }
@@ -294,11 +321,15 @@ class TeamUi {
   void _showStrategyAnalysis(Team team) {
     _outputWriter.writeHeader('⚽ ${team.strategy.displayName} Strategy');
     _outputWriter.writeLine('🔹 ' + _getStrategyDescription(team.strategy));
-    _outputWriter.writeLine('\n' );
+    _outputWriter.writeLine('\n');
     _outputWriter.writeDivider();
     _outputWriter.writeLine('🔍 Formation Compatibility:');
-    _outputWriter.writeLine('⚔️ Attack Rating: ${'⭐' * team.formation.attackRating}');
-    _outputWriter.writeLine('🛡️ Defense Rating: ${'⭐' * team.formation.defenseRating}');
+    _outputWriter.writeLine(
+      '⚔️ Attack Rating: ${'⭐' * team.formation.attackRating}',
+    );
+    _outputWriter.writeLine(
+      '🛡️ Defense Rating: ${'⭐' * team.formation.defenseRating}',
+    );
   }
 
   String _getStrategyDescription(StrategyType strategy) {

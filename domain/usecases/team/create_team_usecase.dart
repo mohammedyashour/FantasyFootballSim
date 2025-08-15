@@ -11,7 +11,6 @@ class CreateTeamUseCase {
 
   CreateTeamUseCase(this._teamRepository);
 
-
   Team call({
     required String teamName,
     required Trainer trainer,
@@ -31,7 +30,6 @@ class CreateTeamUseCase {
     if (_teamRepository.teamExists(teamName)) {
       print('❌ Error: Team name "$teamName" already exists');
     }
-
 
     final team = Team(
       name: teamName,

@@ -117,8 +117,8 @@ class UIMessages {
   static const String goalsSummary = '⚽ Goals Summary';
   static const String substitutionsMenu = '🔄 Substitutions';
   static const String minuteByMinuteEvents = '📅 Minute-by-Minute Events';
-  static const String  teamDetails = '👥 Team Details';
-  static const String  fullEventLogToggle = '🗒️ Toggle Full Event Log';
+  static const String teamDetails = '👥 Team Details';
+  static const String fullEventLogToggle = '🗒️ Toggle Full Event Log';
 
   // Formatting helpers
   static String formatMinute(int minute) =>

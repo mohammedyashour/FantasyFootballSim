@@ -60,6 +60,7 @@ class ConsoleOutputWriter implements OutputWriter {
   }) {
     writeLineWithColor(' • $text', color);
   }
+
   void writeDivider({String symbol = '-', int count = 50}) {
     writeLine(symbol * count);
   }

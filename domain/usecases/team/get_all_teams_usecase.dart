@@ -1,7 +1,6 @@
 import '../../entities/team.dart';
 import '../../repositories/team_repository.dart';
 
-
 class GetAllTeamsUseCase {
   final TeamRepository _teamRepository;
 

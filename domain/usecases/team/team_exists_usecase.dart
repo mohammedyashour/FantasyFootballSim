@@ -5,6 +5,5 @@ class TeamExistsUseCase {
 
   TeamExistsUseCase(this._teamRepository);
 
-  bool call(String teamName) =>
-      _teamRepository.teamExists(teamName);
+  bool call(String teamName) => _teamRepository.teamExists(teamName);
 }

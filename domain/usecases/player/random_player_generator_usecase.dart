@@ -51,7 +51,7 @@ class RandomPlayerGeneratorUseCase {
   }
 
   static int _generateNumber() {
-  return _random.nextInt(99) + 1;
+    return _random.nextInt(99) + 1;
   }
 
   static String _generateName() {

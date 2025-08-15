@@ -126,13 +126,11 @@ class ConsoleInputReader implements InputReader {
   void waitForEnter([String? message]) {
     if (message != null) {
       _output.writeWithColor(
-          '$message (Press Enter to continue) ',
-          TerminalColor.CYAN);
-    } else {
-      _output.writeWithColor(
-        'Press Enter to continue... ',
+        '$message (Press Enter to continue) ',
         TerminalColor.CYAN,
       );
+    } else {
+      _output.writeWithColor('Press Enter to continue... ', TerminalColor.CYAN);
     }
 
     stdin.readLineSync();

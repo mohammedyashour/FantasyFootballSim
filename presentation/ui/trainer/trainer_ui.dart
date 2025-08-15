@@ -30,7 +30,7 @@ class TrainerUi {
     required ConsoleOutputWriter outputWriter,
   }) : _createTrainerUseCase = createTrainerUseCase,
        _randomTrainerGeneratorUseCase = randomTrainerGeneratorUseCase,
-        _selectTrainerUseCase = selectTrainerUseCase,
+       _selectTrainerUseCase = selectTrainerUseCase,
        _trainerRepository = trainerRepository,
        _inputReader = inputReader,
        _outputWriter = outputWriter,
@@ -123,10 +123,11 @@ class TrainerUi {
 
     _inputReader.waitForEnter();
   }
-  void _viewTrainerDetails()  {
+
+  void _viewTrainerDetails() {
     _outputWriter.writeHeader('🔍 Trainer Details');
     try {
-      final trainers =  _trainerRepository.getAll();
+      final trainers = _trainerRepository.getAll();
       if (trainers.isEmpty) {
         _outputWriter.writeError('No trainers available to view.');
         return;
@@ -164,22 +165,30 @@ class TrainerUi {
       TrainerPrinter(_outputWriter).printDetails(trainer);
       _outputWriter.writeLine('----------------------------------------');
 
-      final useTrainer = _inputReader.readBoolean('Would you like to use this trainer for a team? (y/n)');
+      final useTrainer = _inputReader.readBoolean(
+        'Would you like to use this trainer for a team? (y/n)',
+      );
       if (useTrainer) {
         return trainer;
       }
 
-      _outputWriter.write('Trainer "${trainer.name}" was created but not assigned to any team.');
+      _outputWriter.write(
+        'Trainer "${trainer.name}" was created but not assigned to any team.',
+      );
     } catch (e) {
-      _outputWriter.writeError('❌ Failed to create random trainer: ${e.toString()}');
-      _outputWriter.writeLine('Please try again or contact support if the problem persists.');
+      _outputWriter.writeError(
+        '❌ Failed to create random trainer: ${e.toString()}',
+      );
+      _outputWriter.writeLine(
+        'Please try again or contact support if the problem persists.',
+      );
     }
 
     _inputReader.waitForEnter();
     return null;
   }
+
   void _exit() {
     _outputWriter.writeLine('\nExiting Trainer Management...');
   }
-
 }

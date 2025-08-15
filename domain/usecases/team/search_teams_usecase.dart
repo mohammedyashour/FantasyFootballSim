@@ -8,9 +8,12 @@ class SearchTeamsUseCase {
 
   List<Team> call(String query) {
     final allTeams = _teamRepository.getAllTeams();
-    return allTeams.where((team) =>
-    team.name.toLowerCase().contains(query.toLowerCase()) ||
-        (team.city?.toLowerCase().contains(query.toLowerCase()) ?? false)
-    ).toList(); 
+    return allTeams
+        .where(
+          (team) =>
+              team.name.toLowerCase().contains(query.toLowerCase()) ||
+              (team.city?.toLowerCase().contains(query.toLowerCase()) ?? false),
+        )
+        .toList();
   }
 }

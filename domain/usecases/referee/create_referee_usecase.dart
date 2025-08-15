@@ -13,14 +13,13 @@ class CreateRefereeUseCase {
     required int experienceYears,
     double strictness = 0.5,
   }) {
-      final uuid = Uuid();
-      final referee = Referee(
-        id: uuid.v4(),
-        name: name,
-        experienceYears: experienceYears,
-        strictness: strictness,
-      );
-      return refereeRepository.add(referee);
+    final uuid = Uuid();
+    final referee = Referee(
+      id: uuid.v4(),
+      name: name,
+      experienceYears: experienceYears,
+      strictness: strictness,
+    );
+    return refereeRepository.add(referee);
   }
-
 }

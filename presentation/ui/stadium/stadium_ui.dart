@@ -31,39 +31,23 @@ class StadiumUI {
     required RandomStadiumGeneratorUseCase randomStadiumGenerator,
     required ConsoleInputReader input,
     required OutputWriter output,
-  })
-      : _createStadium = createStadium,
-        _getAllStadiums = getAllStadiums,
-        _getStadiumById = getStadiumById,
-        _randomStadiumGenerator = randomStadiumGenerator,
-        _input = input,
-        _output = output,
-        _stadiumPrinter = StadiumPrinter(output) {
+  }) : _createStadium = createStadium,
+       _getAllStadiums = getAllStadiums,
+       _getStadiumById = getStadiumById,
+       _randomStadiumGenerator = randomStadiumGenerator,
+       _input = input,
+       _output = output,
+       _stadiumPrinter = StadiumPrinter(output) {
     _initializeActions();
   }
 
   void _initializeActions() {
     _actions = [
-      UiAction(
-        name: '🏟️ Create Stadium',
-        action: _createStadiumHandler,
-      ),
-      UiAction(
-        name: '📋 List All Stadiums',
-        action: _listAllStadiums,
-      ),
-      UiAction(
-        name: '🔍 Get Stadium By Name',
-        action: _getStadiumByName,
-      ),
-      UiAction(
-        name: '🎲 Create Random Stadium',
-        action: _createRandomStadium,
-      ),
-      UiAction(
-        name: '🚪 Back',
-        action: _exit,
-      ),
+      UiAction(name: '🏟️ Create Stadium', action: _createStadiumHandler),
+      UiAction(name: '📋 List All Stadiums', action: _listAllStadiums),
+      UiAction(name: '🔍 Get Stadium By Name', action: _getStadiumByName),
+      UiAction(name: '🎲 Create Random Stadium', action: _createRandomStadium),
+      UiAction(name: '🚪 Back', action: _exit),
     ];
   }
 
@@ -99,9 +83,15 @@ class StadiumUI {
 
     final capacity = _input.readInt('Capacity:', required: true);
     final attendance = _input.readInt(
-        'Attendance (optional):', required: false, max: capacity, min: 0);
+      'Attendance (optional):',
+      required: false,
+      max: capacity,
+      min: 0,
+    );
     final altitude = _input.readDouble(
-        'Altitude meters (optional):', required: false);
+      'Altitude meters (optional):',
+      required: false,
+    );
 
     final turfIndex = _input.chooseFromMenu(
       'Select Turf Type:',
@@ -160,7 +150,6 @@ class StadiumUI {
   void _exit() {
     _output.writeLine('Returning to previous menu...');
   }
-
 
   List<Stadium> getAllStadiums() {
     return _getAllStadiums();

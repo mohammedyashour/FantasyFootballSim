@@ -39,16 +39,16 @@ class PlayerUI {
     required PlayerPrinter playerPrinter,
     required ConsoleOutputWriter outputWriter,
     required ConsoleInputReader inputReader,
-  })  : _getAllPlayers = getAllPlayers,
-        _getPlayerByPlayerNumber = getPlayerByPlayerNumber,
-        _getPlayerByName = getPlayerByName,
-        _createPlayerUseCase = createPlayerUseCase,
-        _createRandomPlayer = createRandomPlayer,
-        _getPlayerByNationalityUseCase = getPlayerByNationalityUseCase,
-        _createPlayerUI = createPlayerUI,
-        _playerPrinter = playerPrinter,
-        _outputWriter = outputWriter,
-        _inputReader = inputReader {
+  }) : _getAllPlayers = getAllPlayers,
+       _getPlayerByPlayerNumber = getPlayerByPlayerNumber,
+       _getPlayerByName = getPlayerByName,
+       _createPlayerUseCase = createPlayerUseCase,
+       _createRandomPlayer = createRandomPlayer,
+       _getPlayerByNationalityUseCase = getPlayerByNationalityUseCase,
+       _createPlayerUI = createPlayerUI,
+       _playerPrinter = playerPrinter,
+       _outputWriter = outputWriter,
+       _inputReader = inputReader {
     _initializeActions();
   }
 
@@ -70,10 +70,7 @@ class PlayerUI {
         name: '🎲 Create Random Player'.withStyle(TerminalColor.YELLOW),
         action: _createRandomPlayerAction,
       ),
-      UiAction(
-        name: '🚪 Exit'.withStyle(TerminalColor.RED),
-        action: _exit,
-      ),
+      UiAction(name: '🚪 Exit'.withStyle(TerminalColor.RED), action: _exit),
     ];
   }
 
@@ -121,10 +118,7 @@ class PlayerUI {
 
   void _viewPlayerDetails() {
     final searchActions = [
-      UiAction(
-        name: '🔎 Search by Name',
-        action: _searchPlayerByName,
-      ),
+      UiAction(name: '🔎 Search by Name', action: _searchPlayerByName),
       UiAction(
         name: '🆔 Search by PlayerNumber',
         action: _searchPlayerByPlayerNumber,
@@ -133,10 +127,7 @@ class PlayerUI {
         name: '🌍 Search by Nationality',
         action: _searchPlayerByNationality,
       ),
-      UiAction(
-        name: '↩️ Back',
-        action: () {},
-      ),
+      UiAction(name: '↩️ Back', action: () {}),
     ];
 
     while (true) {
@@ -185,9 +176,14 @@ class PlayerUI {
 
   void _searchPlayerByNationality() {
     _outputWriter.writeHeader('Available Nationalities');
-    NationalityPrinter.printNationalitiesGridWithNumbers(_outputWriter, columns: 3);
+    NationalityPrinter.printNationalitiesGridWithNumbers(
+      _outputWriter,
+      columns: 3,
+    );
 
-    final input = _inputReader.readString('Enter number or name of nationality: ');
+    final input = _inputReader.readString(
+      'Enter number or name of nationality: ',
+    );
     final nationality = _getNationalityFromInput(input);
 
     if (nationality == null) {
@@ -195,7 +191,9 @@ class PlayerUI {
       return;
     }
 
-    final players = _getPlayerByNationalityUseCase.call(nationality.displayName);
+    final players = _getPlayerByNationalityUseCase.call(
+      nationality.displayName,
+    );
     _displaySearchResults(players);
   }
 
@@ -207,7 +205,7 @@ class PlayerUI {
     }
 
     return Nationality.values.firstWhere(
-          (n) => n.displayName.toLowerCase() == input.trim().toLowerCase(),
+      (n) => n.displayName.toLowerCase() == input.trim().toLowerCase(),
       orElse: () => Nationality.other,
     );
   }
@@ -223,6 +221,7 @@ class PlayerUI {
       _playerPrinter.printPlayer(player);
     }
   }
+
   void _createRandomPlayerAction() {
     _outputWriter.writeHeader('🎲 Create Random Player');
     final player = _createRandomPlayer.call();

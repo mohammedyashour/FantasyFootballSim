@@ -62,8 +62,10 @@ class RefereeUI {
   void _createRefereeHandler() {
     _outputWriter.writeHeader('Create New Referee');
     final name = _getUserInput('Enter referee name: ');
-    final experience = int.tryParse(_getUserInput('Enter experience years: ')) ?? 0;
-    final strictness = double.tryParse(_getUserInput('Enter strictness (0-1): ')) ?? 0.0;
+    final experience =
+        int.tryParse(_getUserInput('Enter experience years: ')) ?? 0;
+    final strictness =
+        double.tryParse(_getUserInput('Enter strictness (0-1): ')) ?? 0.0;
 
     final referee = _createReferee.call(
       name: name,
@@ -76,9 +78,9 @@ class RefereeUI {
   }
 
   void _viewAllReferees() {
-  _outputWriter.writeHeader('All Referees');
-  final referees = _getAllReferees.call();
-  RefereePrinter.printReferees(referees, _outputWriter);
+    _outputWriter.writeHeader('All Referees');
+    final referees = _getAllReferees.call();
+    RefereePrinter.printReferees(referees, _outputWriter);
   }
 
   void _viewRefereeDetails() {
@@ -93,20 +95,21 @@ class RefereeUI {
   }
 
   void _createRandomReferee() {
-  _outputWriter.writeHeader('Create Random Referee');
-  final referee = _randomRefereeGeneratorUseCase();
-  _outputWriter.writeSuccess('Random referee created successfully!');
-  RefereePrinter.printReferee(referee, _outputWriter);
+    _outputWriter.writeHeader('Create Random Referee');
+    final referee = _randomRefereeGeneratorUseCase();
+    _outputWriter.writeSuccess('Random referee created successfully!');
+    RefereePrinter.printReferee(referee, _outputWriter);
   }
 
   void _exit() {
-  _outputWriter.writeWarning('Exiting Referee Management...');
+    _outputWriter.writeWarning('Exiting Referee Management...');
   }
 
   String _getUserInput(String prompt) {
     stdout.write(prompt);
     return stdin.readLineSync()?.trim() ?? '';
   }
+
   List<Referee> getAllReferees() {
     return _getAllReferees.call();
   }

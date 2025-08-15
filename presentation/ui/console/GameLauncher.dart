@@ -27,7 +27,7 @@ class GameLauncher {
         break;
       }
 
-       actions[choice - 1].action();
+      actions[choice - 1].action();
     }
   }
 }

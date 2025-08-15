@@ -15,12 +15,16 @@ class TeamRepositoryImpl implements TeamRepository {
 
     final unavailablePlayers = findPlayersInTeams(team.players);
     if (unavailablePlayers.isNotEmpty) {
-      print('Warning: ${unavailablePlayers.length} players already in other teams:');
+      print(
+        'Warning: ${unavailablePlayers.length} players already in other teams:',
+      );
       unavailablePlayers.take(3).forEach((p) => print('- ${p.name}'));
     }
 
     _teams.add(team);
-    print('Team "${team.name}" saved successfully (with ${unavailablePlayers.length} shared players)');
+    print(
+      'Team "${team.name}" saved successfully (with ${unavailablePlayers.length} shared players)',
+    );
   }
 
   @override
@@ -32,7 +36,10 @@ class TeamRepositoryImpl implements TeamRepository {
   List<Player> findPlayersInTeams(List<Player> players) {
     final playerIds = players.map((p) => p.playerNumber).toList();
     return _teams
-        .expand((team) => team.players.where((p) => playerIds.contains(p.playerNumber)))
+        .expand(
+          (team) =>
+              team.players.where((p) => playerIds.contains(p.playerNumber)),
+        )
         .toList();
   }
 
@@ -78,7 +85,10 @@ class TeamRepositoryImpl implements TeamRepository {
 
   @override
   List<Team> findTeamsByCity(String city) {
-    final results = _teams.where((team) => team.city?.toLowerCase() == city.toLowerCase()).toList();
+    final results =
+        _teams
+            .where((team) => team.city?.toLowerCase() == city.toLowerCase())
+            .toList();
     print('Found ${results.length} teams in city "$city"');
     return results;
   }
@@ -86,7 +96,9 @@ class TeamRepositoryImpl implements TeamRepository {
   @override
   List<Team> findTeamsByStrategy(StrategyType strategy) {
     final results = _teams.where((team) => team.strategy == strategy).toList();
-    print('Found ${results.length} teams with strategy "${strategy.toString()}"');
+    print(
+      'Found ${results.length} teams with strategy "${strategy.toString()}"',
+    );
     return results;
   }
 

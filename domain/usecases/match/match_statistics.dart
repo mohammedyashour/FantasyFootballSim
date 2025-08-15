@@ -167,7 +167,7 @@ class MatchStatistics {
           (e) => {
             'minute': e.minute,
             'team': e.isHomeTeam ? game.homeTeam.name : game.awayTeam.name,
-            'scorer': e.player?.name ,
+            'scorer': e.player?.name,
             'assistant': e.secondaryPlayer?.name,
           },
         )
@@ -181,8 +181,8 @@ class MatchStatistics {
           (e) => {
             'minute': e.minute,
             'team': e.isHomeTeam ? game.homeTeam.name : game.awayTeam.name,
-            'playerOut': e.player?.name ,
-            'playerIn': e.secondaryPlayer?.name ,
+            'playerOut': e.player?.name,
+            'playerIn': e.secondaryPlayer?.name,
           },
         )
         .toList();

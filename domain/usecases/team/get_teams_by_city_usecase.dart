@@ -6,6 +6,5 @@ class GetTeamsByCityUseCase {
 
   GetTeamsByCityUseCase(this._teamRepository);
 
-  List<Team> call(String city) =>
-      _teamRepository.findTeamsByCity(city);
+  List<Team> call(String city) => _teamRepository.findTeamsByCity(city);
 }

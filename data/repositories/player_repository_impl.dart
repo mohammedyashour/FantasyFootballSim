@@ -10,8 +10,6 @@ class PlayerRepositoryImpl implements PlayerRepository {
   @override
   List<Player> getAll() => List.unmodifiable(_players);
 
-
-
   @override
   Player? getByPlayerNumber(int number) {
     try {

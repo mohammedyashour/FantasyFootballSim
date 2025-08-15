@@ -236,6 +236,7 @@ enum TeamName {
   alYarmoukKuwait('Al Yarmouk Kuwait'),
   alSulaibikhatKuwait('Al Sulaibikhat Kuwait'),
   alJahraKuwait('Al Jahra Kuwait');
+
   final String displayName;
 
   const TeamName(this.displayName);

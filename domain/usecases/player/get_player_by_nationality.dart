@@ -9,10 +9,12 @@ class GetPlayerByNationalityUseCase {
 
   List<Player> call(String nationalityInput) {
     final nationalityEnum = Nationality.values.firstWhere(
-          (n) => n.displayName.toLowerCase() == nationalityInput.trim().toLowerCase()
+      (n) =>
+          n.displayName.toLowerCase() == nationalityInput.trim().toLowerCase(),
     );
 
-    return playerRepository.getAll()
+    return playerRepository
+        .getAll()
         .where((p) => p.nationality == nationalityEnum)
         .toList();
   }
