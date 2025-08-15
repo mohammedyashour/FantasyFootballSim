@@ -295,16 +295,16 @@ class GamePresenter {
         action: () => _displayTeamDetails(game),
       ),
       UiAction(
-        name: "6. ${UIMessages.fullEventLogToggle}(${_showAllEvents ? 'ON' : 'OFF'})",
+        name:
+            "6. ${UIMessages.fullEventLogToggle}(${_showAllEvents ? 'ON' : 'OFF'})",
         action: () {
           _showAllEvents = !_showAllEvents;
-          _output.writeLine('Full event log is now ${_showAllEvents ? 'ON' : 'OFF'}');
+          _output.writeLine(
+            'Full event log is now ${_showAllEvents ? 'ON' : 'OFF'}',
+          );
         },
       ),
-      UiAction(
-        name: "7. ${UIMessages.backToMainMenu}",
-        action: () {},
-      ),
+      UiAction(name: "7. ${UIMessages.backToMainMenu}", action: () {}),
     ];
 
     if (_input == null) return;
@@ -313,13 +313,18 @@ class GamePresenter {
       _output.writeLine(
         '\n${UIMessages.statsDashboardTitle.withStyle(TerminalColor.BLUE)}',
       );
-      _output.writeLine('${'=' * 50}');
+
+      _output.writeDivider();
 
       for (final action in actions) {
         _output.writeLine(action.name);
       }
 
-      final choice = _input.readInt('Enter your choice (1-${actions.length}):', min: 1, max: actions.length);
+      final choice = _input.readInt(
+        'Enter your choice (1-${actions.length}):',
+        min: 1,
+        max: actions.length,
+      );
 
       if (choice == actions.length) return;
 
@@ -420,7 +425,7 @@ class GamePresenter {
     final colors =
         team.teamColors?.map((c) => c.displayName).join(', ') ?? 'N/A';
     _output.writeLine('🎨 Colors: $colors');
-    _output.writeLine('${'—' * 60}');
+    _output.writeDivider(symbol: '-', count: 60);
 
     _output.writeLine('\n${'Starting Players'.withStyle(TerminalColor.GREEN)}');
     final starters = team.players;

@@ -153,7 +153,7 @@ class PlayerUI {
         continue;
       }
 
-      if (index == searchActions.length) { // Back option
+      if (index == searchActions.length) {
         break;
       }
 

@@ -5,7 +5,7 @@ class RefereeRepositoryImpl implements RefereeRepository {
   final List<Referee> _referees = [];
 
   @override
-  Referee create(Referee referee) {
+  Referee add(Referee referee) {
     _referees.add(referee);
     return referee;
   }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import '../../io/output/output_writer.dart';
 
 import '../../../domain/entities/referee.dart';
 import '../../../domain/usecases/referee/create_referee_usecase.dart';
@@ -16,11 +17,14 @@ class RefereeUI {
 
   late final List<UiAction> _actions;
 
+  final OutputWriter _outputWriter;
+
   RefereeUI(
     this._createReferee,
     this._getAllReferees,
     this._getRefereeById,
     this._randomRefereeGeneratorUseCase,
+    this._outputWriter,
   ) {
     _actions = [
       UiAction(name: '🧑‍⚖️ Create New Referee', action: _createRefereeHandler),
@@ -33,16 +37,16 @@ class RefereeUI {
 
   void showMenu() {
     while (true) {
-      print('\nReferee Management System:');
+      _outputWriter.writeHeader('Referee Management System');
       for (int i = 0; i < _actions.length; i++) {
-        print('${i + 1}. ${_actions[i].name}');
+        _outputWriter.writeLine('${i + 1}. ${_actions[i].name}');
       }
 
       final choice = _getUserInput('Enter your choice: ');
       final index = int.tryParse(choice);
 
       if (index == null || index < 1 || index > _actions.length) {
-        print('Invalid choice, please try again.');
+        _outputWriter.writeWarning('Invalid choice, please try again.');
         continue;
       }
 
@@ -56,12 +60,10 @@ class RefereeUI {
   }
 
   void _createRefereeHandler() {
-    print('\n--- Create New Referee ---');
+    _outputWriter.writeHeader('Create New Referee');
     final name = _getUserInput('Enter referee name: ');
-    final experience =
-        int.tryParse(_getUserInput('Enter experience years: ')) ?? 0;
-    final strictness =
-        double.tryParse(_getUserInput('Enter strictness (0-1): ')) ?? 0.0;
+    final experience = int.tryParse(_getUserInput('Enter experience years: ')) ?? 0;
+    final strictness = double.tryParse(_getUserInput('Enter strictness (0-1): ')) ?? 0.0;
 
     final referee = _createReferee.call(
       name: name,
@@ -69,14 +71,14 @@ class RefereeUI {
       strictness: strictness,
     );
 
-    print('\nReferee created successfully!');
-    RefereePrinter.printReferee(referee);
+    _outputWriter.writeSuccess('Referee created successfully!');
+    RefereePrinter.printReferee(referee, _outputWriter);
   }
 
   void _viewAllReferees() {
-    print('\n--- All Referees ---');
-    final referees = _getAllReferees.call();
-    RefereePrinter.printReferees(referees);
+  _outputWriter.writeHeader('All Referees');
+  final referees = _getAllReferees.call();
+  RefereePrinter.printReferees(referees, _outputWriter);
   }
 
   void _viewRefereeDetails() {
@@ -84,21 +86,21 @@ class RefereeUI {
     final referee = _getRefereeById.call(id);
 
     if (referee != null) {
-      RefereePrinter.printReferee(referee);
+      RefereePrinter.printReferee(referee, _outputWriter);
     } else {
-      print('Referee not found');
+      _outputWriter.writeError('Referee not found');
     }
   }
 
   void _createRandomReferee() {
-    print('\n--- Create Random Referee ---');
-    final referee = _randomRefereeGeneratorUseCase();
-    print('\nRandom referee created successfully!');
-    RefereePrinter.printReferee(referee);
+  _outputWriter.writeHeader('Create Random Referee');
+  final referee = _randomRefereeGeneratorUseCase();
+  _outputWriter.writeSuccess('Random referee created successfully!');
+  RefereePrinter.printReferee(referee, _outputWriter);
   }
 
   void _exit() {
-    print('Exiting Referee Management...');
+  _outputWriter.writeWarning('Exiting Referee Management...');
   }
 
   String _getUserInput(String prompt) {

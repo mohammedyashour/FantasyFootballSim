@@ -18,5 +18,5 @@ abstract class OutputWriter {
   void writeSuccess(String success);
 
   void writeWarning(String warning);
-  void writeDivider();
+  void writeDivider({String symbol = '-', int count = 50});
 }

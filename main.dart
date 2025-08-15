@@ -10,9 +10,9 @@ import 'domain/usecases/match/create_match_event.dart';
 import 'domain/usecases/match/describe_match_event.dart';
 import 'domain/usecases/player/CreatePlayerUseCase.dart';
 import 'domain/usecases/player/get_all_players_usecase.dart';
-import 'domain/usecases/player/get_player_by_player_number_usecase.dart';
 import 'domain/usecases/player/get_player_by_name_usecase.dart';
 import 'domain/usecases/player/get_player_by_nationality.dart';
+import 'domain/usecases/player/get_player_by_player_number_usecase.dart';
 import 'domain/usecases/player/random_player_generator_usecase.dart';
 import 'domain/usecases/referee/create_referee_usecase.dart';
 import 'domain/usecases/referee/get_all_referees_usecase.dart';
@@ -117,6 +117,7 @@ void main() {
     getAllReferees,
     getRefereeById,
     randomRefereeGenerator,
+    output,
   );
 
   final stadiumUI = StadiumUI(
